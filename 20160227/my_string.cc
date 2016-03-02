@@ -30,7 +30,11 @@ class String
 
 		String & operator = (const String & rhs)//赋值运算符重载
 		{
-			delete _pstr;
+			if(this==&rhs)//自复制
+			{
+				return *this;
+			}
+			delete [] _pstr;
 			_pstr=new char[strlen(rhs._pstr)+1];
 			strcpy(_pstr,rhs._pstr);
 			return *this;
@@ -59,7 +63,7 @@ class String
 
 		~String()
 		{
-			delete _pstr;
+			delete [] _pstr;
 		}
 
 		void Print()
